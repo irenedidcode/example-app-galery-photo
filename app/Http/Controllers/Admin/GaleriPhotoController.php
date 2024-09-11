@@ -53,4 +53,10 @@ class GaleriPhotoController extends Controller
         return redirect(route('admin-galeri-photo', absolute: false));
         dd($post);
     }
+
+    public function edit(string $postId) 
+    {
+        $post = Post::findOrfail($postId);
+        dd('test masuk alamat', $post);
+    }
 }

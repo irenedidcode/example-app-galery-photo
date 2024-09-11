@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::get('admin-galeri-photo', [GaleriPhotoController::class, 'index'])->name('admin-galeri-photo');
     Route::get('admin-create-galeri-photo', [GaleriPhotoController::class, 'create'])->name('admin-create-galeri-photo');
     Route::post('admin-store-galeri-photo', [GaleriPhotoController::class, 'store'])->name('admin-store-galeri-photo');
+    Route::get('admin-edit-galeri-photo/{post}', [GaleriPhotoController::class, 'edit'])->name('admin-edit-galeri-photo');
+    Route::get('admin-hapus-galeri-photo', [GaleriPhotoController::class, 'delete'])->name('admin-hapus-galeri-photo');
 
     Route::get('user-dashboard', [UserDashboard::class, 'index'])->name('user-dashboard');
 
