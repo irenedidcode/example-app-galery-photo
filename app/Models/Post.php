@@ -19,5 +19,12 @@ class Post extends Model
         'desc',
         'category',
         'user_id',
+        'slug'
     ];
+    //membuat setting atribute title
+    public function setTitleAtribute($value)
+    {
+        $this->attributes['title'] = $value;
+
+    }
 }

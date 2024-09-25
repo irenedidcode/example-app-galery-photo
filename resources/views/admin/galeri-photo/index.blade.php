@@ -5,81 +5,81 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                         {{-- start tombol tambah --}}
-                        <button type="button" class="mb-1.5 px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-gray-700 rounded-lg hover:bg-slate-950 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                        <button type="button" class="mb-2.5 px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                            <a href="{{ route('admin-create-galeri-photo') }}">
                             Tambah Data
                            </a>
                         </button>
                         {{-- end tombol tambah --}}
-
                         {{-- start display data posts --}}
 
+
                             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                                <table class="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
-                                    <thead class="text-xs text-white uppercase bg-gray-600 border-b border-white-400 dark:text-white">
+                                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
+
                                             <th scope="col" class="px-6 py-3">
-                                                #
+                                                ID
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                Title
+                                                Tittle
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                Description
+                                             Category
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                Category
+                                               Description
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                Picture
-                                            </th>
+                                               Picture
+                                             </th>
                                             <th scope="col" class="px-6 py-3">
                                                 Action
-                                            </th>
+                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ($listPost as $post)
-                                        <tr class="bg-gray-600 border-white-400 hover:bg-gray-500 text-white">
-                                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap dark:text-white-100">
-                                                {{ $loop->iteration }}
-                                            </th>
-                                            <td class="px-6 py-4">
-                                                {{ $post->title }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                {{ $post->desc }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                {{ $post->category }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                {{ __('BELOM ADA GAMBAR PRET') }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                <a 
-                                                href="{{ route('admin-edit-galeri-photo', [$post->id]) }}" 
-                                                class="text-center font-medium text-white hover:underline">
-                                                Edit
-                                                </a>
-                                                <hr>
-                                                <a 
-                                                href="{{ route('admin-hapus-galeri-photo') }}" 
-                                                class="text-center font-medium text-white hover:underline">
-                                                Delete
-                                                </a>
-                                            </td>
-                                            @empty
-                                            <th class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+
+                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {{ $post->id}}
+                                                </th>
+                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                                                   {{ $post->title }}
+
+                                                </th>
+                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                                                   {{ $post->category }}
+
+                                                </th>
+                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                   {{ $post->desc }}
+                                                </th>
+
+                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                    {{__('Belum ada gambar woi' ) }}
+                                                 </th>
+                                                <td class="px-6 py-4">
+                                                    <a href="{{ route('admin-edit-galeri-photo', [$post->id]) }}" class="text-blue">edit</a>
+                                                    <hr>
+                                                    <a href="{{ route('admin-delete-galeri-photo', [$post->id]) }}" class="text-blue">delete</a>
+                                                </td>
+                                                @empty
                                                 <div class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
-                                                    <span class="font-medium">Warning alert!</span> Gadak data weh
+                                                    <span class="font-medium">Galeri photo belum ada...</span>
                                                 </div>
-                                            </th>
-                                            @endforelse
+                                                @endforelse
+
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div> 
+                            </div>
+
                         {{-- end display data posts --}}
                 </div>
             </div>
