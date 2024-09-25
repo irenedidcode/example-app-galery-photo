@@ -57,6 +57,13 @@ class GaleriPhotoController extends Controller
     public function edit(string $postId) 
     {
         $post = Post::findOrfail($postId);
-        dd('test masuk alamat', $post);
+
+        return view('admin.galeri-photo.edit',[
+            'pageTitle' => 'Edit Galeri',
+            'post'     => 'edit album',
+            'listCategory' => Category::categories
+
+        ]);
+       //dd('test masuk alamat', $post);
     }
 }
