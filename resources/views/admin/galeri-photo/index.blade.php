@@ -65,7 +65,7 @@
                                                     {{__('Belum ada gambar woi' ) }}
                                                  </th>
                                                 <td class="px-6 py-4">
-                                                    <a href="{{ route('admin-edit-galeri-photo', [$post->id]) }}" class="text-blue">edit</a>
+                                                    <a href="{{ route('admin-edit-galeri-photo', [$post->slug]) }}" class="text-blue">edit</a>
                                                     <hr>
                                                     <a href="{{ route('admin-delete-galeri-photo', [$post->id]) }}" class="text-blue">delete</a>
                                                 </td>

@@ -20,13 +20,13 @@ Route::middleware('auth')->group(function () {
     Route::get('admin-galeri-photo', [GaleriPhotoController::class, 'index'])->name('admin-galeri-photo');
     Route::get('admin-create-galeri-photo', [GaleriPhotoController::class, 'create'])->name('admin-create-galeri-photo');
     Route::post('admin-store-galeri-photo', [GaleriPhotoController::class, 'store'])->name('admin-store-galeri-photo');
-    Route::get('admin-edit-galeri-photo/{post}', [GaleriPhotoController::class, 'edit'])->name('admin-edit-galeri-photo');
+    Route::get('admin-edit-galeri-photo/{id}', [GaleriPhotoController::class, 'edit'])->name('admin-edit-galeri-photo');
     Route::get('admin-delete-galeri-photo', [GaleriPhotoController::class, 'delete'])->name('admin-delete-galeri-photo');
-    
+
     Route::get('user-dashboard', [UserDashboard::class, 'index'])->name('user-dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile', [ProfileController ::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

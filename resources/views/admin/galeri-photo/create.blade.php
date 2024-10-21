@@ -15,10 +15,9 @@
                                 </h3>
                             </div>
                             <!-- Modal body -->
-                            <form
-                            class="p-4 md:p-5"
-                            method="POST"
-                            action="{{ route('admin-store-galeri-photo') }}"
+                            <form 
+                            action="{{ route('admin-store-galeri-photo') }}" 
+                            method="POST" 
                             enctype="multipart/form-data">
                             @csrf
 
@@ -46,10 +45,10 @@
                                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                             id="multiple_files"
                                             type="file"
-
+                                            name="images[]"
                                             multiple />
 
-                                            </div>
+                                    </div>
 
                                     <div class="col-span-2 sm:col-span-1">
                                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 ">Category</label>
@@ -81,7 +80,7 @@
                                     Add new product
                                 </button>
                             </form>
-                            </div>
+                        </div>
       </div>
   </div>
 
