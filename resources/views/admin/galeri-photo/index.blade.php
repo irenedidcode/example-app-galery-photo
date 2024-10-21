@@ -62,7 +62,14 @@
                                                 </th>
 
                                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {{__('Belum ada gambar woi' ) }}
+                                                    @if ($post->image && count($post->image) > 0)
+                                                        @foreach ($post->image as $images)
+                                                            <img src="{{ asset('storage/' . $images->path) }}" alt="" class="w-16 border rounded-xl h-16">
+                                                        @endforeach
+                                                    @else
+                                                        {{ 'belum ada gambar' }}
+                                                    @endif
+
                                                  </th>
                                                 <td class="px-6 py-4">
                                                     <a href="{{ route('admin-edit-galeri-photo', [$post->slug]) }}" class="text-blue">edit</a>
