@@ -10,6 +10,7 @@ use App\Helpers\Category;
 use Illuminate\Container\Attributes\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
 
 class GaleriPhotoController extends Controller
 {
@@ -63,9 +64,17 @@ class GaleriPhotoController extends Controller
             foreach ($request->file('images') as $file) {
                 if ($file->isValid()) {
                     // Store the file and get the path
-                    $path = $file->store('image', 'public');
+                    // $path = $file->store('image', 'public');
                     
+                    $originalName = $file->getClientOriginalName();
+
+
+                    $uniqueName = time() . '_' . $originalName;
+
+                    $path = $file->storeAs('image' , $uniqueName, 'public');
+
                     // Save file information to the database
+
                     Image::create([
                         'post_id' => $post->id,
                         'path' => $path,
@@ -78,11 +87,12 @@ class GaleriPhotoController extends Controller
     }
     
     public function edit(string $slug) {
-        $post = Post::where('slug', $slug)->firstOrFail();
+        $post = Post::with('image')->where('slug', $slug)->first();
     
         return view('admin.galeri-photo.edit', [
             'pageTitle' => 'Edit Album',
             'post'      => $post,
+            'images'    => $post->image,
             'listCategory' => Category::categories,
         ]);
         

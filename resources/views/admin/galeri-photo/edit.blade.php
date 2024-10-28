@@ -35,6 +35,14 @@
                             <input
                                 class="w-full text-lg text-gray-900 border border-gray-300 bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 name="images[]" id="multiple_files" type="file" multiple>
+                                <div class="mt-2">
+                                    @forelse ($images as $image)
+                                        <p> <img src="{{ asset('storage/' . $image->path) }}" alt="" class="w-16 border rounded-xl h-16"></p>
+                                        <p> {{ $image->name }}</p>
+                                    @empty
+                                        
+                                    @endforelse
+                                </div>
                         </div>
                         {{-- CATEGORIES --}}
                         <div class="col-span-2 sm:col-span-1">
