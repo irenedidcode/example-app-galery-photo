@@ -77,23 +77,46 @@ class GaleriPhotoController extends Controller
         return redirect()->route('admin-galeri-photo')->with('success', 'Post created successfully.');
     }
     
-    public function edit (string $slug) {
-        $post = Post::where('slug', $slug)->first();
-        dd($post);
+    public function edit(string $slug) {
+        $post = Post::where('slug', $slug)->firstOrFail();
+    
+        return view('admin.galeri-photo.edit', [
+            'pageTitle' => 'Edit Album',
+            'post'      => $post,
+            'listCategory' => Category::categories,
+        ]);
+        
     }
-        // $post = Post::findOrfail($slug);
-        // mengvembalikan ke halaman viewe admin-galeri-photo
-        // return view('admin.galeri-photo.edit', [
-        //     'pageTitle' => 'Edit Album',
-        //     'post'      => $post,
-        //     'listCategory' => Category::categories
+     public function updategaleri(request $request,Post $post){
+        //logic for update
+        $validate = $request->validate([
+            'title'     => 'required|unique:posts,title', // Check for unique title
+            'category'  => 'required',
+            'desc'      => 'required',
+            'images'    => 'required',
+            'images.*'  => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'title.required' => 'Nama harus diisi',
+            'title.unique' => 'Judul sudah ada, silakan gunakan judul lain', // Custom error message
+            'desc.required' => 'Di isi ya sayang',
+            'category.required' => 'Isi la panteg',
+            'images.required' => 'Fotonya isi ya',
+        ]);
 
-        // ]);
+        $post->update([
+            'title' => $validate['title'],
+            'category' => $validate['category'],
+            'desc' => $validate['desc'],
+            'slug' => Str::slug($validate['title']),
+            'user_id' => Auth::user()->id,
+        ]);
+        dd($post);
+     }
 
-        // return redirect(route('admin-galeri-photo', absolute: false));
-        // dd($post);
-        // return redirect();
-
+    public function update(Request $request) {
+        
+    }
+    
 
     public function delete() {
         dd('anj gua dilupain',);

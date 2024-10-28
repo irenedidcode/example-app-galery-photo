@@ -11,9 +11,12 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <!-- Modal body -->
 
-                <form method="POST" action="{{ route('admin-store-galeri-photo') }}" enctype="multipart/form-data"
+                <form method="POST" 
+                    action="{{ route('admin-update-galeri-photo',[$post->slug]) }}" 
+                    enctype="multipart/form-data"
                     class="p-4 md:p-5">
                     @csrf
+                    @method('put')
 
                     <div class="grid gap-4 mb-4 grid-cols-2">
                         <div class="col-span-2">
@@ -59,7 +62,7 @@
                     </div>
                     <button type="submit"
                         class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <a href="{{ route('admin-edit-galeri-photo', [$post->id]) }}">
+                        <a href="{{ route('admin-update-galeri-photo', [$post->slug]) }}">
                             Edit
                         </a>
                     </button>
