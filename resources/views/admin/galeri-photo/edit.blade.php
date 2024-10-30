@@ -12,11 +12,11 @@
                 <!-- Modal body -->
 
                 <form method="POST" 
-                    action="{{ route('admin-update-galeri-photo',[$post->slug]) }}" 
+                    action="{{ route('admin-update-galeri-photo', [$post->slug]) }}" 
                     enctype="multipart/form-data"
                     class="p-4 md:p-5">
                     @csrf
-                    @method('put')
+                    @method('PUT')
 
                     <div class="grid gap-4 mb-4 grid-cols-2">
                         <div class="col-span-2">
@@ -34,13 +34,21 @@
                                 for="large_size">Unggah Foto</label>
                             <input
                                 class="w-full text-lg text-gray-900 border border-gray-300 bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                name="images[]" id="multiple_files" type="file" multiple>
+                                name="images[]"
+                                id="multiple_files" 
+                                type="file" 
+                                multiple>
                                 <div class="mt-2">
                                     @forelse ($images as $image)
                                         <p> <img src="{{ asset('storage/' . $image->path) }}" alt="" class="w-16 border rounded-xl h-16"></p>
-                                        <p> {{ $image->name }}</p>
+                                        <p>
+                                            <div class="flex items-center mt-2 mb-2">
+                                                <input id="default-checkbox" type="checkbox" name="images[]" value="{{ $image->id }}" class=" w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $image->name }}</label>
+                                            </div> 
+                                        </p>
                                     @empty
-                                        
+                                                                                                                                                                                                                                                                                                                                                                                            
                                     @endforelse
                                 </div>
                         </div>
@@ -70,18 +78,20 @@
                     </div>
                     <button type="submit"
                         class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <a href="{{ route('admin-update-galeri-photo', [$post->slug]) }}">
-                            Edit
+                        Edit
+                    </button>
+
+                    <button type="button"
+                        class="text-white inline-flex items-center bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                        <a href="{{ route('admin-galeri-photo') }}">
+                            Cancel
                         </a>
                     </button>
+
+                    
                 </form>
 
-                <button type="button"
-                    class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <a href="{{ route('admin-galeri-photo') }}">
-                        Cancel
-                    </a>
-                </button>
+                
 
             </div>
         </div>

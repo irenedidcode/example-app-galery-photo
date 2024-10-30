@@ -23,11 +23,9 @@
                                                 ID
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                Tittle
+                                                Title
                                             </th>
-                                            <th scope="col" class="px-6 py-3">
-                                             Category
-                                            </th>
+                                            
                                             <th scope="col" class="px-6 py-3">
                                                Description
                                             </th>
@@ -52,24 +50,17 @@
                                                    {{ $post->title }}
 
                                                 </th>
-                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-
-                                                   {{ $post->category }}
-
-                                                </th>
+                                                
                                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                    {{ $post->desc }}
                                                 </th>
 
                                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    @if ($post->image && count($post->image) > 0)
-                                                        @foreach ($post->image as $images)
-                                                            <img src="{{ asset('storage/' . $images->path) }}" alt="" class="w-16 border rounded-xl h-16">
-                                                        @endforeach
+                                                    @if (count($post->image) > 0)
+                                                        {{ 'Gambar ' . (count($post->image)) }}
                                                     @else
-                                                        {{ 'belum ada gambar' }}
+                                                        {{ 'Gambar 0' }}
                                                     @endif
-
                                                  </th>
                                                 <td class="px-6 py-4">
                                                     <a href="{{ route('admin-edit-galeri-photo', [$post->slug]) }}" class="text-blue">edit</a>
