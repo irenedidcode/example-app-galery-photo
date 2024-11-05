@@ -6,12 +6,15 @@ use App\Http\Controllers\User\DashboardController as UserDashboard;
 use App\Http\Controllers\Admin\{
     GaleriPhotoController, NewsPortalController
 };
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'listPost'  => Post::with('image')->get()
+    ]);
 });
 
 Route::get('/dashboard', function () {
