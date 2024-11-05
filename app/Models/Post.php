@@ -23,6 +23,11 @@ class Post extends Model
         'slug'
     ];
 
+    //membuat function untuk relasi antara post dan contents
+    public function contents(){
+        return $this->hasMany(Content::class);
+    }
+
     public function image() {
         return $this->hasMany(Image::class);
     }

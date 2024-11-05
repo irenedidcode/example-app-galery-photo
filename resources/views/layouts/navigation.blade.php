@@ -21,6 +21,10 @@
                         <x-nav-link :href="route('admin-galeri-photo')" :active="request()->routeIs('admin-galeri-photo')">
                             {{ __('Galeri Photo') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="route('admin-newsportal')" :active="request()->routeIs('admin-newsportal')">
+                            {{ __('News Portal') }}
+                        </x-nav-link>
                     @else
                         <x-nav-link :href="route('user-dashboard')" :active="request()->routeIs('user-dashboard')">
                             {{ __('Dashboard') }}
