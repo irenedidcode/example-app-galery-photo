@@ -62,10 +62,10 @@
                                                         {{ 'Gambar 0' }}
                                                     @endif
                                                  </th>
-                                                <td class="px-6 py-4">
-                                                    <a href="{{ route('admin-edit-galeri-photo', [$post->slug]) }}" class="text-blue">edit</a>
-                                                    <hr>
-                                                    <a href="{{ route('admin-delete-galeri-photo', [$post->id]) }}" class="text-blue">delete</a>
+                                                <td class="px-6 py-4  text-center flex gap-2">
+                                                    <a href="{{ route('admin-edit-galeri-photo', [$post->slug]) }}" class="text-blue-600">edit</a>
+                                                    <a href="{{ route('admin-show-galeri-photo', [$post->slug]) }}" class="text-white-500">view</a>
+                                                    <a href="{{ route('admin-delete-galeri-photo', [$post->id]) }}" class="text-red-500">delete</a>
                                                 </td>
                                                 @empty
                                                 <div class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">

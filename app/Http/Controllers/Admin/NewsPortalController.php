@@ -15,4 +15,12 @@ class NewsPortalController extends Controller
             'newsportals' => Post::with('contents')->get()
         ]);
     }
+
+    public function create() {
+        // dd('rencana rencana dan rencana');
+        return view('admin.newsportals.create', [
+            'pageTitle' => 'Create News Portal',
+            'newsportals' => Post::with('contents')->get()
+        ]);
+    }
 }             

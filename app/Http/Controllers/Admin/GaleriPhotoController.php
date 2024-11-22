@@ -16,10 +16,6 @@ use Illuminate\Support\Facades\Storage;
 class GaleriPhotoController extends Controller
 {
     public function index() {
-        // menampilkan isi data post dan images
-
-        // dd(Post::all());
-        // Post::all();
 
         return view ('admin.galeri-photo.index',[
             'pageTitle' => 'Galeri-Photo',
@@ -98,6 +94,7 @@ class GaleriPhotoController extends Controller
         ]);
         
     }
+
     public function updategaleri(request $request,Post $post){
         // dd($request);
         //logic for update
@@ -116,7 +113,7 @@ class GaleriPhotoController extends Controller
     
                 dd('berhasil menghapus gambar yang di ceklis');
             }
-        }
+        
         
         $validate = $request->validate([
             
@@ -140,7 +137,6 @@ class GaleriPhotoController extends Controller
             'slug' => Str::slug($validate['title']),
             'user_id' => Auth::user()->id,
         ]);
-        //    dd($post);
         //menggambil request input image
         
         // jika ada request file images
@@ -165,42 +161,28 @@ class GaleriPhotoController extends Controller
                         'post_id' => $post->id,
                         'path' => $path,
                         ]);
-                
-            
-                //mengambil file request images looping
 
-                // foreach ($request->file('images') as $file) {
-                //     //membuat atau menyimpan file baru
-                //     if ($file->isValid()) {
-                //         // Store the file and get the path
-                //         // $path = $file->store('image', 'public');
-                        
-                //         $originalName = $file->getClientOriginalName();
-                        
-                //         // membuat nama file menjadi  unik
-                //         $uniqueName = time() . '_' . $originalName;
-                        
-                //         $path = $file->storeAs('image' , $uniqueName, 'public');
+            return redirect(route('admin-galeri-photo', absolute:false));
+        } else {
+            return redirect(route('admin-galeri-photo', absolute:false));
+        }
 
-                //         // Save file information to the database
-                        
-                //         Image::create([
-                //         'name' =>  $originalName,
-                //         'post_id' => $post->id,
-                //         'path' => $path,
-                //     ]);
-                //
-                
-            
-    return redirect(route('admin-galeri-photo', absolute:false));
-
-    } else {
-        return redirect(route('admin-galeri-photo', absolute:false));
     }
-    
-
 }
         }
+    } 
+
+
+    public function show(Post $post) {
+        
+        $album = Post::where('id', $post->id)->with('image')->first();
+
+        return view('admin.galeri-photo.show', [
+            'pageTitle' => 'Show Galeri',
+            'album'     =>  $post,
+        ]);
+
+        dd($album); 
     }
 
     public function update(Request $request) {
@@ -229,7 +211,6 @@ class GaleriPhotoController extends Controller
         ]);
        dd($post);
     }
-
 
     public function delete() {
         dd('anj gua dilupain',);
