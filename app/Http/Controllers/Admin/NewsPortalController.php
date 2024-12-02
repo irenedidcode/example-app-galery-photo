@@ -10,7 +10,7 @@ class NewsPortalController extends Controller
 {
     public function index(){
         // mengirim data ke halaman new portal
-        return view('admin.galeri-photo.newsportals.index', [
+        return view('admin.newsportals.index', [
             'pageTitle' => 'News Portal',
             'newsportals' => Post::with('contents')->get()
         ]);

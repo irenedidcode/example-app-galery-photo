@@ -70,7 +70,7 @@
                                         placeholder="Write album description here"></textarea>
                                         <x-input-error :messages="$errors->get('desc')" class="mt-2" />
                                 </div>
-                                <button type="submit" class=" m-auto text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                <button type="submit" class="my-3 text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                     Tambah
                                 </button>
                             </form>

@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     
     route::get('admin-newsportal', [NewsPortalController::class, 'index'])->name('admin-newsportal');
     Route::get('admin-create-news-portal', [NewsPortalController::class, 'create'])->name('admin-create-news-portal');
+    Route::post('admin-store-news-portal', [NewsPortalController::class, 'store'])->name('admini-store-news-portal')
 
     Route::get('user-dashboard', [UserDashboard::class, 'index'])->name('user-dashboard');
 
