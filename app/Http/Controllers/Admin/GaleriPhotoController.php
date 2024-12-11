@@ -13,9 +13,12 @@ use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
+use function Pest\Laravel\post;
+
 class GaleriPhotoController extends Controller
 {
-    public function index() {
+    public function index() 
+    {
 
         return view ('admin.galeri-photo.index',[
             'pageTitle' => 'Galeri-Photo',
@@ -24,7 +27,8 @@ class GaleriPhotoController extends Controller
 
     }
 
-    public function create() {
+    public function create() 
+    {
         // dd('rencana rencana dan rencana');
         return view('admin.galeri-photo.create', [
             'pageTitle' => 'Create Galeri',
@@ -95,7 +99,8 @@ class GaleriPhotoController extends Controller
         
     }
 
-    public function updategaleri(request $request,Post $post){
+    public function updategaleri(request $request,Post $post)
+    {
         // dd($request);
         //logic for update
         
@@ -162,30 +167,26 @@ class GaleriPhotoController extends Controller
                         'path' => $path,
                         ]);
 
-            return redirect(route('admin-galeri-photo', absolute:false));
-        } else {
-            return redirect(route('admin-galeri-photo', absolute:false));
+                    return redirect(route('admin-galeri-photo', absolute:false));
+                } else {
+                    return redirect(route('admin-galeri-photo', absolute:false));
+                }
+            }
         }
-
-    }
-}
         }
     } 
 
 
-    public function show(Post $post) {
-        
-        $album = Post::where('id', $post->id)->with('image')->first();
-
+    public function show(Post $post) 
+    {
         return view('admin.galeri-photo.show', [
             'pageTitle' => 'Show Galeri',
-            'album'     =>  $post,
+            'album'     =>  Post::where('id', $post->id)->with('image')->first(),
         ]);
-
-        dd($album); 
     }
 
-    public function update(Request $request) {
+    public function update(Request $request) 
+    {
         dd($request);
         //logic for update
         $validate = $request->validate([
@@ -212,7 +213,21 @@ class GaleriPhotoController extends Controller
        dd($post);
     }
 
-    public function delete() {
-        dd('anj gua dilupain',);
+    public function destroy(Post $post)
+    {
+
+        $album = Post::with('image')->find($post->id);
+        foreach ($album->image as $images) {
+            // melakukan penghapusan file image di storage
+
+            Storage::disk('public')->delete($images->path);
+            // menghapus objek image dari table image
+            $images->delete();
+        }
+
+        $post->delete();
+
+        return redirect(route('admin-galeri-photo', absolute:false))->with('status', 'deleted-successfully');;
     }
+
 }
