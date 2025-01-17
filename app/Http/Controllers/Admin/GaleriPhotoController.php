@@ -36,7 +36,8 @@ class GaleriPhotoController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request) 
+    {
         $validate = $request->validate([
             'title'     => 'required|unique:posts,title', // Check for unique title
             'category'  => 'required',
@@ -87,7 +88,8 @@ class GaleriPhotoController extends Controller
         return redirect()->route('admin-galeri-photo')->with('success', 'Post created successfully.');
     }
     
-    public function edit(string $slug) {
+    public function edit(string $slug) 
+    {
         $post = Post::with('image')->where('slug', $slug)->first();
         
         return view('admin.galeri-photo.edit', [

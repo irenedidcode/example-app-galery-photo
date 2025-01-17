@@ -41,4 +41,9 @@ public function image() {
             $this->attributes['slug'] = Str::slug($value);
         }
     }
+
+    // 1 postingan memiliki banyak likes
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
 }

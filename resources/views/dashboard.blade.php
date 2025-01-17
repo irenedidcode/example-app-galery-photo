@@ -12,6 +12,9 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
+            <div class="mt-2">
+                <livewire:counter/>
+            </div>
         </div>
     </div>
 </x-app-layout>

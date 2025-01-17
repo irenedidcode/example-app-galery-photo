@@ -22,6 +22,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    //ADMIN
     Route::get('admin-dashboard', [AdminDashboard::class, 'index'])->name('admin-dashboard');
     Route::get('admin-galeri-photo', [GaleriPhotoController::class, 'index'])->name('admin-galeri-photo');
     Route::get('admin-create-galeri-photo', [GaleriPhotoController::class, 'create'])->name('admin-create-galeri-photo');
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('admin-create-news-portal', [NewsPortalController::class, 'create'])->name('admin-create-news-portal');
     Route::post('admin-store-news-portal', [NewsPortalController::class, 'store'])->name('admin-store-news-portal');
 
+    //USER
     Route::get('user-dashboard', [UserDashboard::class, 'index'])->name('user-dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
